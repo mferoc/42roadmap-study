@@ -113,8 +113,15 @@ int            main()
 {
     int qtt;
 
+    printf("Dev_Version\n");
     qtt = ft_printf("Ola% que tal? %\n", ", Matheus", "Curtiu?");
     printf("%d caracteres impressos\n", qtt);
+    printf("Original_Version\n");
+    qtt = printf("Ola%s que tal? %s\n", ", Matheus", "Curtiu?");
+    printf("%d caracteres impressos\n", qtt);
+
+
+
 
     return (0);
 }
