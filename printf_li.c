@@ -17,6 +17,15 @@
 
 /*
  * ***************************************
+ * to insert in libftprintf.h
+ * ****************************************
+ */
+struct fields{
+    char specifier;
+};
+
+/*
+ * ***************************************
  * aux functions
  * ****************************************
  */
@@ -71,6 +80,23 @@ static void     ft_putnbr(int n)
 		ft_putchar('0');
 }
 */
+static void     ft_specifier_redirect(va_list *p_ap, char sp, int *p)
+{
+    if(sp == 's')
+    {
+        char *str;
+        str = va_arg(*p_ap, char *);
+        ft_putstr(str, p);
+    }
+    /*
+    else if(sp == 'c')
+    {
+        char c;
+        c = (char)var_arg(*p_ap, int);
+        ft_putchar(c, p);
+    }
+    */
+}
 
 /*
  * ***************************************
@@ -82,6 +108,8 @@ int             ft_printf(const char *fmt, ...)
     int *printed;
     int count;
     va_list ap;
+    //struct fields *strformat;
+    struct fields strformat;
 
     if(!fmt)
         return(-1);
@@ -97,8 +125,20 @@ int             ft_printf(const char *fmt, ...)
         }
         else
         {
-            ft_putstr((char *)va_arg(ap, char *), printed);
             fmt++;
+            if(*fmt == '%')
+            {
+                ft_putchar(*fmt, printed);
+                fmt++;
+            }
+            else
+            {
+                strformat.specifier = *fmt;
+                //ft_strformat_init(strformat);
+                //ft_fieldstorage(fmt,strformat,printed);
+                ft_specifier_redirect(&ap, strformat.specifier, printed);
+                fmt++;
+            }
         }
     }
     va_end(ap);
@@ -114,7 +154,7 @@ int            main()
     int qtt;
 
     printf("Dev_Version\n");
-    qtt = ft_printf("Ola% que tal? %\n", ", Matheus", "Curtiu?");
+    qtt = ft_printf("Ola%s que tal? %s\n", ", Matheus", "Curtiu?");
     printf("%d caracteres impressos\n", qtt);
     printf("Original_Version\n");
     qtt = printf("Ola%s que tal? %s\n", ", Matheus", "Curtiu?");
