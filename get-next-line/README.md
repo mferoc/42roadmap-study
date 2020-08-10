@@ -1,3 +1,5 @@
 # get-next-line_study
 
-<img src="../00-assets/gnl/gnl00.png" />
+## Reading a line on a fd is way too tedious
+
+<img src="../00-assets/gnl/00gnl.png" />
