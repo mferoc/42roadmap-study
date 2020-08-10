@@ -4,6 +4,9 @@
 
 <img src="../00-assets/gnl/00gnl.png" />
 
+## Algorithm
+**Under development**
+
 ## Links
 
 https://www.computerhope.com/jargon/f/file-descriptor.htm
